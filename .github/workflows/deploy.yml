@@ -21,7 +21,7 @@ jobs:
         with:
           node-version: 22
 
-      - run: unzip zoeira-da-live-pronto-github.zip -d app
+      - run: unzip zoeira-da-live-pronto-github-corrigido.zip -d app
 
       - name: Corrigir dependência
         run: cd app && npm pkg set 'devDependencies.esbuild=^0.28.2'
