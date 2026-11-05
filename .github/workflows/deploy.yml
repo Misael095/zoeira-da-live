@@ -1,3 +1,4 @@
+
 name: Publicar Zoeira da Live
 
 on:
@@ -21,8 +22,15 @@ jobs:
           node-version: 22
 
       - run: unzip zoeira-da-live-pronto-github.zip -d app
-      - run: cd app && npm install
-      - run: cd app && npm run build
+
+      - name: Corrigir dependência
+        run: cd app && npm pkg set 'devDependencies.esbuild=^0.28.2'
+
+      - name: Instalar dependências
+        run: cd app && npm install
+
+      - name: Compilar aplicativo
+        run: cd app && npm run build
 
       - uses: actions/upload-pages-artifact@v3
         with:
@@ -36,3 +44,4 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+        
